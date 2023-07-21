@@ -74,7 +74,7 @@ Template template = client.addTemplate(template_str.getBytes(), template_data);
 </CodeGroup>
 
 <Note>
-  Make sure you do not forget to `encode()` your string. Otherwise, the string will be interpreted as a filename.
+  *Make sure you do not forget to call `getBytes()` on your String. Otherwise, the string will be interpreted as a filename.*
 </Note>
 
 In this template, `{{name}}` is a placeholder that will be replaced by a real value when generating a PDF. 
@@ -187,9 +187,9 @@ Otherwise, the "Welcome, regular user!" message will be included.
 ## Stylesheets
 
 <Note>
-    Please ensure that your stylesheets are written purely in CSS. As of now, FastPDF does not support precompiled CSS languages 
+    *Please ensure that your stylesheets are written purely in CSS. As of now, FastPDF does not support precompiled CSS languages 
     like SCSS, or CSS frameworks like Tailwind. 
-    Stick to standard CSS to ensure compatibility and successful rendering.
+    Stick to standard CSS to ensure compatibility and successful rendering.*
 </Note>
 
 You can do this in one of two ways: by using a separate stylesheet, or by using inline CSS. 

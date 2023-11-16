@@ -18,7 +18,7 @@ Welcome to **fastpdf** Java Package, the versatile and quick solution for your P
 
 ## Getting Started
 
-Before you start with the fastpdf Java Package, make sure you have Java 14+ installed on your machine.
+Before you start with the fastpdf Java Package, make sure you have Java 11+ installed on your machine.
 
 To use `fastpdf`, you'll first need to register an account to [fastpdfservice.com](https://fastpdfservice.com), and get your API key. 
 

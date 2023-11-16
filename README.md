@@ -1,12 +1,12 @@
 # FastPDF Java Package
 
-Welcome to **fastpdf** Java Package, the versatile and quick solution for your PDF rendering needs. This package is a SDK for fastpdfservice.com REST API.
+Welcome to **fastpdf** Java Package, the versatile and quick solution for your PDF rendering needs. This package is a SDK for fastpdfservice.com REST API. Requires Java 11.0 or newer.
 
 ## Overview
 
 `fastpdf` is a Java package designed to simplify the PDF generation process. It streamlines the procedure of rendering HTML/CSS templates into a PDF document, offering granular control over the rendering options, and provides the ability to add images and barcodes into your PDFs.
 
-`fastpdf` leverages the PDF manipulation API available at [fastpdfservice.com](https://www.fastpdfservice.com), ensuring high performance, scalability, and reliability. By using fastpdf, you are able to generate complex, high-quality PDFs efficiently. 
+`fastpdf` leverages the PDF manipulation API available at [fastpdfservice.com](https://fastpdfservice.com), ensuring high performance, scalability, and reliability. By using fastpdf, you are able to generate complex, high-quality PDFs efficiently. 
 
 ## Key Features
 
@@ -20,7 +20,7 @@ Welcome to **fastpdf** Java Package, the versatile and quick solution for your P
 
 Before you start with the fastpdf Java Package, make sure you have Java 14+ installed on your machine.
 
-To use `fastpdf`, you'll first need to register an account to [fastpdfservice.com](https://www.fastpdfservice.com), and get your API key. 
+To use `fastpdf`, you'll first need to register an account to [fastpdfservice.com](https://fastpdfservice.com), and get your API key. 
 
 Install fastpdf from Maven Central:
 ```html {{ title: 'Java' }}

@@ -29,7 +29,7 @@ Install fastpdf from Maven Central:
 <dependency>
     <groupId>com.fastpdfservice</groupId>
     <artifactId>fastpdf</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
@@ -66,9 +66,9 @@ Then, you'll need to create a [Template](https://docs.fastpdfservice.com/templat
 ```java {{ title: 'Java' }}
 import com.fastpdfservice.fastpdf.api.Template;
 
-String template_str = "<html><body>Hello world, my name is {{name}}!</body></html>";
-Template template_data = new Template("basic-document", "html");
-Template template = client.addTemplate(template_str.getBytes(), template_data);
+String templateStr = "<html><body>Hello world, my name is {{name}}!</body></html>";
+Template templateData = new Template("basic-document", "html");
+Template template = client.addTemplate(templateStr, templateData);
 ```
 
 </CodeGroup>
@@ -88,11 +88,11 @@ In our data object, we set a value for the `name` variable that we defined in ou
 <CodeGroup title="Rendering our basic template">
 
 ```java {{ title: 'Java' }}
-Map<String, Object> document_data = new HashMap<>();
-document_data.put("name", "John");
+Map<String, Object> documentData = new HashMap<>();
+documentData.put("name", "John");
 
-String template_id = template.getId();
-byte[] document = client.renderTemplate(template_id, document_data);
+String templateId = template.getId();
+byte[] document = client.renderTemplate(templateId, documentData);
 ```
 
 </CodeGroup>
@@ -120,7 +120,7 @@ Here is how to iterate over a list of items, using a for loop.
 ```java {{ title: 'Java' }}
 // If you're working with a version of Java prior to Java 15, 
 // you'll need to format multi-line strings differently. 
-String template_content = """
+String templateContent = """
 <html>
 <body>
     <ul>
@@ -131,8 +131,8 @@ String template_content = """
 </body>
 </html>
 """;
-Template template_data = new Template("for-loop-document", "html");
-Template template = client.addTemplate(template_content.getBytes(), template_data);
+Template templateData = new Template("for-loop-document", "html");
+Template template = client.addTemplate(templateContent, templateData);
 ```
 
 </CodeGroup>
@@ -144,11 +144,11 @@ Next, we define our rendering_data by associating a list of item value to the `i
 <CodeGroup title="Rendering our For Loop template">
 
 ```java {{ title: 'Java' }}
-Map<String, Object> document_data = new HashMap<>();
-document_data.put("items", List.of("First item", "Second item", "Last item"));
+Map<String, Object> documentData = new HashMap<>();
+documentData.put("items", List.of("First item", "Second item", "Last item"));
 
-String template_id = template.getId();
-byte[] document = client.renderTemplate(template_id, document_data);
+String templateId = template.getId();
+byte[] document = client.renderTemplate(templateId, documentData);
 // Save to disk, if needed
 client.save(document, "path/to/loop-document.pdf");
 ```
@@ -163,7 +163,7 @@ If statements can be used to conditionally include parts of the template, based 
 <CodeGroup title="If statement">
 
 ```java {{ title: 'Java' }}
-String template_content = """
+String templateContent = """
 <html>
 <body>
     {% if user_premium %}
@@ -174,8 +174,8 @@ String template_content = """
 </body>
 </html>
 """;
-Template template_data = new Template("if-document", "html");
-Template template = client.addTemplate(template_content.getBytes(), template_data);
+Template templateData = new Template("if-document", "html");
+Template template = client.addTemplate(templateContent, templateData);
 ```
 
 </CodeGroup>
@@ -224,11 +224,11 @@ Alternatively, you can use the `add_stylesheet()` method to add a stylesheet to 
 ```java {{ title: 'Java' }}
 import com.fastpdfservice.fastpdf.api.StyleFile;
 
-String stylesheet_path = "styles.css";
-StyleFile stylesheet_data = new StyleFile("css");
+String stylesheetPath = "styles.css";
+StyleFile stylesheetData = new StyleFile("css");
 
-String template_id = template.getId();
-client.addStylesheet(template_id, stylesheet_path, stylesheet_data);
+String templateId = template.getId();
+client.addStylesheetFromFile(templateId, stylesheetPath, stylesheetData);
 ```
 
 </CodeGroup>
@@ -244,7 +244,7 @@ To begin, we create our template with an `<img>` tag, using our image uri in the
 <CodeGroup title="Creating a template with an image">
 
 ```java {{ title: 'Java' }}
-String template_content = """
+String templateContent = """
 <html>
 <body>
     <img src="{{my_favourite_logo}}">
@@ -252,8 +252,8 @@ String template_content = """
 </body>
 </html>
 """;
-Template template_data = new Template("image-document", "html");
-Template template = client.addTemplate(template_content.getBytes(), template_data);
+Template templateData = new Template("image-document", "html");
+Template template = client.addTemplate(templateContent, templateData);
 ```
 
 </CodeGroup>
@@ -266,11 +266,11 @@ This step can be done from your [template dashboard](https://fastpdfservice.com/
 ```java {{ title: 'Java' }}
 import com.fastpdfservice.fastpdf.api.ImageFile;
 
-String image_path = "my-logo.png";
-ImageFile image_data = new ImageFile("png", "my_favourite_logo");
+String imagePath = "my-logo.png";
+ImageFile imageData = new ImageFile("png", "my_favourite_logo");
 
-String template_id = template.getId();
-ImageFile image = client.addImage(template_id, image_path, image_data);
+String templateId = template.getId();
+ImageFile image = client.addImageFromFile(templateId, imagePath, imageData);
 ```
 
 </CodeGroup>
@@ -280,11 +280,11 @@ Finally, we render our document. As usual, we define our rendering data object w
 <CodeGroup title="Rendering our image template">
 
 ```java {{ title: 'Java' }}
-Map<String, Object> document_data = new HashMap<>();
-document_data.put("name", "Jane");
+Map<String, Object> documentData = new HashMap<>();
+documentData.put("name", "Jane");
 
-String template_id = template.getId();
-byte[] document = client.renderTemplate(template_id, document_data);
+String templateId = template.getId();
+byte[] document = client.renderTemplate(templateId, documentData);
 // Save to disk, if needed
 client.save(document, "path/to/image-document.pdf");
 ```
@@ -305,7 +305,7 @@ Firstly, let's create a new template:
 <CodeGroup title="A simple template">
 
 ```java {{ title: 'Java' }}
-String template_content = """
+String templateContent = """
 <html>
 <body>
     <h1>{{title}}</h1>
@@ -313,7 +313,7 @@ String template_content = """
 </body>
 </html>
 """;
-Template template_data = new Template("customer-header-footer-document", "html");
+Template templateData = new Template("customer-header-footer-document", "html");
 ```
 
 </CodeGroup>
@@ -326,18 +326,18 @@ We will use them to set the page number.
 <CodeGroup title="Custom header and footer">
 
 ```java {{ title: 'Java' }}
-String header_content = """
+String headerContent = """
 <div style="text-align: center; padding: 10px; font-size: 8px;">
     <h2>{{header_note}}</h2>
 </div>
 """;
-String footer_content = """
+String footerContent = """
 <div style="text-align: center; margin: auto; padding: 10px; font-size: 8px;">
     <span class="pageNumber"></span>
 </div>
 """;
-Template template = client.addTemplate(template_content.getBytes(), template_data,
-                                       header_content.getBytes(), footer_content.getBytes());
+Template template = client.addTemplate(templateContent, templateData,
+                                       headerContent, footerContent);
 ```
 
 </CodeGroup>
@@ -347,13 +347,13 @@ Now, when you render the PDF, pass the `header_note`, `title` and `content` in y
 <CodeGroup title="Rendering custom header document">
 
 ```java {{ title: 'Java' }}
-Map<String, Object> document_data = new HashMap<>();
-document_data.put("title", "My document");
-document_data.put("content", "My document content");
-document_data.put("header_note", "This is my favorite header");
+Map<String, Object> documentData = new HashMap<>();
+documentData.put("title", "My document");
+documentData.put("content", "My document content");
+documentData.put("header_note", "This is my favorite header");
 
-String template_id = template.getId();
-byte[] document = client.renderTemplate(template_id, document_data);
+String templateId = template.getId();
+byte[] document = client.renderTemplate(templateId, documentData);
 // Save to disk, if needed
 client.save(document, "path/to/custom-header-document.pdf");
 ```
@@ -372,7 +372,7 @@ First, let's prepare our template and data. Suppose we want to generate PDFs for
 <CodeGroup title="Basic template">
 
 ```java {{ title: 'Java' }}
-String template_content = """
+String templateContent = """
 <html>
 <body>
     <h1>Welcome, {{name}}!</h1>
@@ -380,8 +380,8 @@ String template_content = """
 </body>
 </html>
 """;
-Template template_data = new Template("image-document", "html");
-Template template = client.addTemplate(template_content.getBytes(), template_data);
+Template templateData = new Template("image-document", "html");
+Template template = client.addTemplate(templateContent, templateData);
 ```
 
 </CodeGroup>
@@ -414,8 +414,8 @@ Finally, we can call the `render_template_many()` method with our template id an
 <CodeGroup title="Rendering of multiple Documents">
 
 ```java {{ title: 'Java' }}
-String template_id = template.getId();
-byte[] zip_result = client.renderTemplateMany(template_id, users);
+String templateId = template.getId();
+byte[] zipResult = client.renderTemplateMany(templateId, users);
 ```
 
 </CodeGroup>
@@ -427,10 +427,10 @@ You now have the choice between extracting the zip_result into a Java List, or i
 
 ```java {{ title: 'Java' }}
 // Save all pdfs to the disk
-client.extract(zip_result, "path/to/directory/");
+client.extract(zipResult, "path/to/directory/");
 
 // Or get a list of PDF
-List<byte[]> pdfs = client.extract(zip_result);
+List<byte[]> pdfs = client.extract(zipResult);
 ```
 
 </CodeGroup>

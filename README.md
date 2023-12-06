@@ -1,3 +1,5 @@
+[![Maven Central](https://img.shields.io/maven-central/v/com.fastpdfservice/fastpdf.svg)](https://search.maven.org/search?q=g:com.fastpdfservice%20AND%20a:fastpdf)
+
 # FastPDF Java Package
 
 Welcome to **fastpdf** Java Package, the versatile and quick solution for your PDF rendering needs. This package is a SDK for fastpdfservice.com REST API. Requires Java 11.0 or newer.
